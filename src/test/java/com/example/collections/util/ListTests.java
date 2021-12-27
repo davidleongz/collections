@@ -1,19 +1,16 @@
 package com.example.collections.util;
 
-import static org.junit.Assert.assertEquals;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import org.junit.Test;
+import com.example.collections.dto.OrderListDTO;
+import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.util.CollectionUtils;
 
-import com.example.collections.dto.OrderListDTO; 
-import com.example.collections.util.JsonTools;
+import java.util.ArrayList;
+import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
 public class ListTests {
