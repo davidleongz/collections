@@ -4,8 +4,10 @@ import com.example.collections.dto.PersonDTO;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Slf4j
 public class ShortListDemo {
@@ -21,23 +23,101 @@ public class ShortListDemo {
         List<PersonDTO> personList = Arrays.asList(personA, personB, personC, personD, personE);
         log.info("Unsorted list ");
         personList.forEach(p -> log.info(p.getName()));
+        log.info("----------");
 
-        sortWithLambda(personList);
+        sortListByFieldWithComparatorComparing(personList);
+        sortListByFieldWithComparatorComparingReversedOrder(personList);
+        sortListByFieldWithComparatorAndLambda(personList);
+        sortListByFieldWithLambda(personList);
+        sortListByFieldWithCollections(personList);
+        sortNumberListNaturalOrder();
+        sortNumberListReversedOrder();
+        sortNumberListWithCollectionsReversedOrder();
+        sortNumberListWithComparatorNaturalOrder();
     }
 
-    private static void sortWithComparator(List<PersonDTO> personList) {
+    private static void sortListByFieldWithComparatorComparing(List<PersonDTO> personList) {
+
+        personList.sort(Comparator.comparing(PersonDTO::getName));
+
+        log.info("Sorted list with Comparator.comparing");
+        personList.forEach(p -> log.info(p.getName()));
+    }
+
+
+    private static void sortListByFieldWithComparatorComparingReversedOrder(List<PersonDTO> personList) {
+
+        personList.sort(Comparator.comparing(PersonDTO::getName).reversed());
+
+        log.info("Sorted list with Comparator.comparing and Reverse order");
+        personList.forEach(p -> log.info(p.getName()));
+    }
+
+
+    private static void sortListByFieldWithComparatorAndLambda(List<PersonDTO> personList) {
 
         Comparator<PersonDTO> sortByPersonName = (PersonDTO person1, PersonDTO person2) -> person1.getName().compareTo(person2.getName());
         personList.sort(sortByPersonName);
 
-        log.info("List sorted {}",personList);
+        log.info("Sorted list With Comparator And Lambda");
+        personList.forEach(p -> log.info(p.getName()));
     }
 
-    private static void sortWithLambda(List<PersonDTO> personList) {
+    private static void sortListByFieldWithLambda(List<PersonDTO> personList) {
 
         personList.sort((PersonDTO person1, PersonDTO person2) -> person1.getName().compareTo(person2.getName()));
 
-        log.info("Sorted list ");
+        log.info("Sorted list with Lambda");
         personList.forEach(p -> log.info(p.getName()));
     }
+
+    private static void sortListByFieldWithCollections(List<PersonDTO> personList) {
+
+        Collections.sort(personList, (PersonDTO person1, PersonDTO person2) -> person1.getName().compareTo(person2.getName()));
+
+        log.info("Sorted list with Collections package");
+        personList.forEach(p -> log.info(p.getName()));
+    }
+
+
+    private static void sortNumberListWithCollectionsReversedOrder(){
+
+        List<Integer> list = Arrays.asList(10, 4, 2, 6, 5, 8);
+        log.info("Unsorted list number {}", list);
+
+        Collections.sort(list, Collections.reverseOrder());
+
+        log.info("Sorted list {}", list);
+    }
+
+    private static void sortNumberListNaturalOrder(){
+
+        List<Integer> list = Arrays.asList(10, 4, 2, 6, 5, 8);
+        log.info("Unsorted list number {}", list);
+
+        list = list.stream().sorted(Comparator.naturalOrder()).collect(Collectors.toList());
+
+        log.info("Sorted list {}", list);
+    }
+
+    private static void sortNumberListReversedOrder(){
+
+        List<Integer> list = Arrays.asList(10, 4, 2, 6, 5, 8);
+        log.info("Unsorted list number {}", list);
+
+        list = list.stream().sorted(Comparator.reverseOrder()).collect(Collectors.toList());
+
+        log.info("Sorted list {}", list);
+    }
+
+    private static void sortNumberListWithComparatorNaturalOrder(){
+
+        List<Integer> list = Arrays.asList(10, 4, 2, 6, 5, 8);
+        log.info("Unsorted list number {}", list);
+
+        list.sort(Comparator.naturalOrder());
+
+        log.info("Sorted list {}", list);
+    }
+
 }
