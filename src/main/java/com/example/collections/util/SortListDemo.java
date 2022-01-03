@@ -3,14 +3,13 @@ package com.example.collections.util;
 import com.example.collections.dto.PersonDTO;
 import lombok.extern.slf4j.Slf4j;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Slf4j
-public class ShortListDemo {
+public class SortListDemo {
+
+    private static List<PersonDTO> personList;
 
     public static void main(String[] args) {
 
@@ -25,7 +24,9 @@ public class ShortListDemo {
         personList.forEach(p -> log.info(p.getName()));
         log.info("----------");
 
-        sortListByFieldWithComparatorComparing(personList);
+        setValuesToAllList(personList);
+
+/*        sortListByFieldWithComparatorComparing(personList);
         sortListByFieldWithComparatorComparingReversedOrder(personList);
         sortListByFieldWithComparatorAndLambda(personList);
         sortListByFieldWithLambda(personList);
@@ -33,7 +34,7 @@ public class ShortListDemo {
         sortNumberListNaturalOrder();
         sortNumberListReversedOrder();
         sortNumberListWithCollectionsReversedOrder();
-        sortNumberListWithComparatorNaturalOrder();
+        sortNumberListWithComparatorNaturalOrder();*/
     }
 
     private static void sortListByFieldWithComparatorComparing(List<PersonDTO> personList) {
@@ -118,6 +119,19 @@ public class ShortListDemo {
         list.sort(Comparator.naturalOrder());
 
         log.info("Sorted list {}", list);
+    }
+
+    private static void setValuesToAllList(List<PersonDTO> personList){
+        SortListDemo.personList = personList;
+
+        personList.forEach(p -> {
+                p.setAge(30);
+                p.setName("Nombre1");
+        });
+
+        personList.forEach(p -> p.setSurName("Martinez"));
+
+        log.info("Sorted list {}", personList);
     }
 
 }
