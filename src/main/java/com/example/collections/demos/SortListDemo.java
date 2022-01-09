@@ -1,4 +1,4 @@
-package com.example.collections.util;
+package com.example.collections.demos;
 
 import com.example.collections.dto.PersonDTO;
 import lombok.extern.slf4j.Slf4j;
