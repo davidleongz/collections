@@ -17,4 +17,7 @@ public class PersonDTO {
 
     private int age;
 
+    public boolean isRetired(){
+        return this.getAge() > 65;
+    }
 }

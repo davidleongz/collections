@@ -2,6 +2,7 @@ package com.example.collections.demos;
 
 import com.example.collections.dto.PersonDTO;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -35,6 +36,8 @@ public class SortListDemo {
         sortNumberListReversedOrder();
         sortNumberListWithCollectionsReversedOrder();
         sortNumberListWithComparatorNaturalOrder();*/
+
+        extractEvenNumbersOfList();
     }
 
     private static void sortListByFieldWithComparatorComparing(List<PersonDTO> personList) {
@@ -93,12 +96,12 @@ public class SortListDemo {
 
     private static void sortNumberListNaturalOrder(){
 
-        List<Integer> list = Arrays.asList(10, 4, 2, 6, 5, 8);
-        log.info("Unsorted list number {}", list);
+        List<Integer> numberlist = Arrays.asList(10, 4, 2, 6, 5, 8);
+        log.info("Unsorted list number {}", numberlist);
 
-        list = list.stream().sorted(Comparator.naturalOrder()).collect(Collectors.toList());
+        List<Integer> numberlistSorted = numberlist.stream().sorted(Comparator.naturalOrder()).collect(Collectors.toList());
 
-        log.info("Sorted list {}", list);
+        log.info("Sorted list {}", numberlistSorted);
     }
 
     private static void sortNumberListReversedOrder(){
@@ -132,6 +135,18 @@ public class SortListDemo {
         personList.forEach(p -> p.setSurName("Martinez"));
 
         log.info("Sorted list {}", personList);
+    }
+
+    private static void extractEvenNumbersOfList(){
+
+        List<Integer> numberlist = Arrays.asList(1,2,3,4,5,6);
+        log.info("Complete list {}", numberlist);
+
+        List<Integer> evenNumberList = numberlist.stream().filter(n -> n % 2 == 0).collect(Collectors.toList());
+        List<Integer> oddNumberList = numberlist.stream().filter(n -> n % 2 != 0).collect(Collectors.toList());
+
+        log.info("Even number list {}", evenNumberList);
+        log.info("Odd number list {}", oddNumberList);
     }
 
 }

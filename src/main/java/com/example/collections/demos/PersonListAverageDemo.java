@@ -4,7 +4,6 @@ import com.example.collections.dto.PersonDTO;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.OptionalDouble;
 
 public class PersonListAverageDemo {
 
@@ -18,11 +17,11 @@ public class PersonListAverageDemo {
 
         List<PersonDTO> personList = Arrays.asList(personA, personB, personC, personD, personE);
 
-        System.out.println("Average Imperative Programming: " + getAverageImperativeProgramming(personList));
-        System.out.println("Average Functional Programming: " + getAverageFunctionalProgramming(personList));
+        System.out.println("Average Imperative Programming: " + getAdultAverageImperativeProgramming(personList));
+        System.out.println("Average Functional Programming: " + getAdultAverageFunctionalProgramming(personList));
     }
 
-    private static Integer getAverageImperativeProgramming(List<PersonDTO> personList) {
+    private static Integer getAdultAverageImperativeProgramming(List<PersonDTO> personList) {
 
         Integer totalAge = 0;
         Integer totalPeople = 0;
@@ -37,7 +36,7 @@ public class PersonListAverageDemo {
         return totalAge/totalPeople;
     }
 
-    private static Integer getAverageFunctionalProgramming(List<PersonDTO> personList){
+    private static Integer getAdultAverageFunctionalProgramming(List<PersonDTO> personList){
 
        Double average  = personList.stream()
                 .mapToInt(PersonDTO::getAge)
