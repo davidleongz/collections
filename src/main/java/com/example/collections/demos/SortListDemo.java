@@ -2,7 +2,6 @@ package com.example.collections.demos;
 
 import com.example.collections.dto.PersonDTO;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -25,7 +24,7 @@ public class SortListDemo {
         personList.forEach(p -> log.info(p.getName()));
         log.info("----------");
 
-        setValuesToAllList(personList);
+        setValuesToAllListWithForEach(personList);
 
 /*        sortListByFieldWithComparatorComparing(personList);
         sortListByFieldWithComparatorComparingReversedOrder(personList);
@@ -37,7 +36,9 @@ public class SortListDemo {
         sortNumberListWithCollectionsReversedOrder();
         sortNumberListWithComparatorNaturalOrder();*/
 
-        extractEvenNumbersOfList();
+        //extractEvenNumbersOfList();
+        //sortListWithAnonymousClassJava7(personList);
+
     }
 
     private static void sortListByFieldWithComparatorComparing(List<PersonDTO> personList) {
@@ -65,6 +66,21 @@ public class SortListDemo {
 
         log.info("Sorted list With Comparator And Lambda");
         personList.forEach(p -> log.info(p.getName()));
+    }
+
+
+    private static void sortListWithAnonymousClassJava7(List<PersonDTO> personList){
+
+        Collections.sort(personList, new Comparator<PersonDTO>() {
+
+            @Override
+            public int compare(final PersonDTO personA, final PersonDTO personB) {
+
+                return personA.getName().compareTo(personB.getName());
+            }
+        });
+        log.info("---");
+        personList.forEach(p -> log.info("Sorted list {}" ,p.getName()));
     }
 
     private static void sortListByFieldWithLambda(List<PersonDTO> personList) {
@@ -124,7 +140,7 @@ public class SortListDemo {
         log.info("Sorted list {}", list);
     }
 
-    private static void setValuesToAllList(List<PersonDTO> personList){
+    private static void setValuesToAllListWithForEach(List<PersonDTO> personList){
         SortListDemo.personList = personList;
 
         personList.forEach(p -> {
