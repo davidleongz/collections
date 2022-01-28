@@ -44,7 +44,7 @@ public class ExtractOrdersNotRepeatedDemo {
         log.info("{} differences found using stream, filter and predicate", ordersNotRepeated.size());
     }
 
-    
+
     private static void findDifferencesWithRemoveAll(OrderListDTO orderLargeList, OrderListDTO orderSmallList) {
 
         orderLargeList.getOrderList().removeAll(orderSmallList.getOrderList());
